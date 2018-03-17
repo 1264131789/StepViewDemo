@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StepView">
+        <attr name="step_size" format="dimension"/><!--step的size，也就是image的大小-->
+        <attr name="line_size" format="dimension"/><!--线宽-->
+        <attr name="text_size" format="dimension"/><!--文字大小-->
+        <attr name="text_line_margin" format="dimension"/><!--文字和线之间的间距-->
+        <attr name="normal_line_color" format="color"/><!--一般线的颜色-->
+        <attr name="normal_text_color" format="color"/><!--一般文字的颜色-->
+        <attr name="target_text_color" format="color"/><!--一般文字的颜色-->
+        <attr name="passed_line_color" format="color"/><!--已经过线的颜色-->
+        <attr name="step_count" format="integer"/><!--总step数-->
+        <attr name="current_step" format="integer"/><!--当前step位置-->
+        <attr name="normal_step_iv" format="reference"/><!--一般图片-->
+        <attr name="passed_step_iv" format="reference"/><!--已经过的图片-->
+        <attr name="target_step_iv" format="reference"/><!--当前step图片-->
+        <attr name="step_is_touch" format="boolean"/><!--step是否可点-->
+        <attr name="text_up_line" format="boolean"/><!--文字是否在线上-->
+    </declare-styleable>
+</resources>

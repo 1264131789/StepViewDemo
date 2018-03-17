@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    tools:context="com.shbj.stepviewdemo.MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cb_touch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可点击"/>
+
+        <CheckBox
+            android:id="@+id/cb_is_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="文字在下"/>
+    </LinearLayout>
+
+
+    <com.shbj.stepviewdemo.StepView
+        android:id="@+id/step_view"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:current_step="1"
+        app:line_size="2dp"
+        app:normal_line_color="@android:color/holo_blue_dark"
+        app:normal_step_iv="@drawable/order_time_node_normal"
+        app:normal_text_color="@android:color/darker_gray"
+        app:passed_line_color="@android:color/darker_gray"
+        app:passed_step_iv="@drawable/order_time_node_normal"
+        app:step_count="6"
+        app:step_size="30dp"
+        app:target_step_iv="@drawable/order_time_node_disabled"
+        app:target_text_color="@android:color/holo_blue_dark"
+        app:text_line_margin="3dp"
+        app:text_size="10sp"/>
+
+</LinearLayout>
