@@ -58,11 +58,6 @@ public class StepView extends View {
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
         mPreLineLength = 0;
-        //默认的step图片
-        mNormalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_normal);
-        mPassedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_passed);
-        mTargetBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_target);
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepView);
         //获取xml文件中的线的颜色值、size
         mNormalLineColor = typedArray.getColor(R.styleable.StepView_normal_line_color, Color.BLUE);
@@ -77,7 +72,11 @@ public class StepView extends View {
         //获取xml文件中的文本和线之间的间距
         mTextLineMargin = (int) typedArray.getDimension(R.styleable.StepView_text_line_margin, 3);
         //获取xml文件中的step总数
-        mStepCount = typedArray.getInt(R.styleable.StepView_step_count, 2);
+        mStepCount = typedArray.getInt(R.styleable.StepView_step_count, 0);
+        //默认的step图片
+        mNormalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_normal);
+        mPassedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_passed);
+        mTargetBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_target);
 
         //获取xml文件中的当前step位置
         mCurrentStep = typedArray.getInt(R.styleable.StepView_current_step, 0);
@@ -125,8 +124,10 @@ public class StepView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawLine(canvas);//drawLine和drawStep分两次循环是为了防止部分线覆盖step
-        drawStep(canvas);
+        if (mStepCount != 0) {
+            drawLine(canvas);//drawLine和drawStep分两次循环是为了防止部分线覆盖step
+            drawStep(canvas);
+        }
     }
 
     private void drawLine(Canvas canvas) {
@@ -238,6 +239,7 @@ public class StepView extends View {
     public void setStepTexts(String[] stepTexts) {
         mStepTexts = stepTexts;
         mStepCount = mStepTexts.length;
+        mStepRectFs = new RectF[mStepCount];//初始化step所对应的矩阵数组，点击step时会用到，用于确定点击的是哪个step
     }
 
     public void setStepIsTouch(boolean stepIsTouch) {
