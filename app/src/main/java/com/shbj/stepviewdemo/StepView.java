@@ -222,11 +222,25 @@ public class StepView extends View {
                 int touchStep = getTouchStep(new PointF(x, y));//获取被点击的点的位置
                 if (touchStep != -1) {
                     mCurrentStep = touchStep + 1;
+                    if (mOnItemStepTouchListener!=null){
+                        mOnItemStepTouchListener.onItemStepTouch(mCurrentStep);//返回被触摸step的位置
+                    }
                     invalidate();
                 }
                 break;
         }
         return true;
+    }
+
+    private OnItemStepTouchListener mOnItemStepTouchListener;
+
+    public void setOnItemStepTouchListener(OnItemStepTouchListener onItemStepTouchListener) {
+        mOnItemStepTouchListener = onItemStepTouchListener;
+    }
+
+    //每一个step的触摸监听
+    public interface OnItemStepTouchListener {
+        void onItemStepTouch(int postion);
     }
 
     //设置当前step
@@ -246,8 +260,8 @@ public class StepView extends View {
         mStepIsTouch = stepIsTouch;
     }
 
-    public void setTextUpLine(boolean isChecked) {
-        mTextUpLine = isChecked;
+    public void setTextUpLine(boolean textUpLine) {
+        mTextUpLine = textUpLine;
         invalidate();
     }
 
